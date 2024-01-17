@@ -7,14 +7,14 @@ function CurrentBalance() {
   const handleBlur = (e) => {
     //update local storage here.
     setIsEditing(false);
-  }
+  };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       //update local storage here
       setIsEditing(false);
     }
-  }
+  };
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4">

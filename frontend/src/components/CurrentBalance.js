@@ -35,7 +35,7 @@ function CurrentBalance() {
     if (!isNaN(newBalance)) {
       setBalance(newBalance);
     }
-  }
+  };
 
   const formattedBalance = new Intl.NumberFormat("en-US", {
     style: "currency",

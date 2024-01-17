@@ -3,15 +3,20 @@ import React, { useState, useEffect } from "react";
 function CurrentBalance() {
   const [balance, setBalance] = useState(() => {
     // read balance from local storage, default 0.
-    const savedBal = localStorage.getItem('balance');
-    return savedBal !== null ? parseFloat(savedBal) : 0;
+    const savedBal = localStorage.getItem("balance");
+    const paresedBal = parseFloat(savedBal);
+    return isNaN(paresedBal) ? 0 : paresedBal;
   });
   const [isEditing, setIsEditing] = useState(false);
 
+  const updateLocalStorage = (newBalance) => {
+    localStorage.setItem("balance", newBalance);
+  };
+
   // update local storage on balance change.
   useEffect(() => {
-    localStorage.setItem('balance', balance);
-  }, [balance])
+    localStorage.setItem("balance", balance);
+  }, [balance]);
 
   const handleBlur = (e) => {
     //update local storage here.
@@ -25,9 +30,16 @@ function CurrentBalance() {
     }
   };
 
-  const formattedBalance = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const handleInputChange = (e) => {
+    const newBalance = parseFloat(e.target.value);
+    if (!isNaN(newBalance)) {
+      setBalance(newBalance);
+    }
+  }
+
+  const formattedBalance = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(balance);
 
   return (
@@ -39,13 +51,17 @@ function CurrentBalance() {
           value={balance}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          onChange={(e) => setBalance(parseFloat(e.target.value))}
+          onChange={handleInputChange}
           className="text-gray-600 p-1 border-2 border-gray-300 rounded w-full"
           autoFocus
           aria-label="Edit Balance"
         />
       ) : (
-        <p className="text-gray-600" onClick={() => setIsEditing(true)} aria-label="Current Balance">
+        <p
+          className="text-gray-600"
+          onClick={() => setIsEditing(true)}
+          aria-label="Current Balance"
+        >
           {formattedBalance}
         </p>
       )}

@@ -3,7 +3,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="text-center my-8">
+    <footer className="finance-footer text-center my-8">
       <p className="text-gray-600">© 2024 Finance Tracker</p>
     </footer>
   );

@@ -4,7 +4,7 @@ import logo from "../imgs/logo.png";
 
 function Header() {
   return (
-    <header className="text-center my-4">
+    <header className="finance-header text-center my-4">
       <img className="mx-auto" src={logo} width="200px" height="auto"></img>
     </header>
   );

@@ -43,7 +43,7 @@ function CurrentBalance() {
   }).format(balance);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4">
+    <div className="current-balance bg-white shadow-md rounded-lg p-4">
       <h3 className="font-semibold text-lg text-gray-800">Current Balance</h3>
       {isEditing ? (
         <input
